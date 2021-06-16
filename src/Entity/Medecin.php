@@ -62,6 +62,11 @@ class Medecin
      */
     private $date_naissance;
 
+    /**
+     * @ORM\OneToOne(targetEntity=RDV::class, mappedBy="medecin", cascade={"persist", "remove"})
+     */
+    private $rdvs;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -171,6 +176,23 @@ class Medecin
     public function setDateNaissance(\DateTimeInterface $date_naissance): self
     {
         $this->date_naissance = $date_naissance;
+
+        return $this;
+    }
+
+    public function getRdvs(): ?RDV
+    {
+        return $this->rdvs;
+    }
+
+    public function setRdvs(RDV $rdvs): self
+    {
+        // set the owning side of the relation if necessary
+        if ($rdvs->getMedecin() !== $this) {
+            $rdvs->setMedecin($this);
+        }
+
+        $this->rdvs = $rdvs;
 
         return $this;
     }

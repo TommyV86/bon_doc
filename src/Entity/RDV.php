@@ -27,6 +27,18 @@ class RDV
      */
     private $heure_rdv;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Medecin::class)
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $medecin;
+
+    /**
+     * @ORM\OneToOne(targetEntity=Patient::class, inversedBy="rdv", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $patient;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -52,6 +64,30 @@ class RDV
     public function setHeureRdv(\DateTimeInterface $heure_rdv): self
     {
         $this->heure_rdv = $heure_rdv;
+
+        return $this;
+    }
+
+    public function getMedecin(): ?Medecin
+    {
+        return $this->medecin;
+    }
+
+    public function setMedecin(?Medecin $medecin): self
+    {
+        $this->medecin = $medecin;
+
+        return $this;
+    }
+
+    public function getPatient(): ?Patient
+    {
+        return $this->patient;
+    }
+
+    public function setPatient(Patient $patient): self
+    {
+        $this->patient = $patient;
 
         return $this;
     }
