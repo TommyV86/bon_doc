@@ -33,7 +33,7 @@ class MedecinTest extends TestCase
         $validator = $kernel->getContainer()->get('validator');
         $medecin = new Medecin();
         $medecin->setNom("VE");
-        $medecin = $validator->validate($medecin);
+        $errors = $validator->validate($medecin);
 
         $this->assertCount(1, $errors, "Une erreur est rencontrée car moins de 3 chars");
         $this->assertEquals(1, count($errors), "Une erreur est rencontrée car moins de 3 chars");
@@ -136,7 +136,7 @@ class MedecinTest extends TestCase
         $validator = $kernel->getContainer()->get('validator');
         $medecin = new Medecin();
         $medecin->setSpecialite("Dentiste");
-        $errors = $validator->validate($Medecin);
+        $errors = $validator->validate($medecin);
 
         $this->assertCount(0, $errors, "Une erreur est rencontrée car plus de 3 chars");
         $this->assertEquals(0, count($errors), "Une erreur est rencontrée car plus de 3 chars");
@@ -159,7 +159,7 @@ class MedecinTest extends TestCase
         $medecin->setAdresse("15 rue de la porte Gellée, 44100 NANTES");
         $adresse = $medecin->getAdresse();
 
-        $this->assertEquals("15 rue de la porte Gellée, 44100 NANTES", $adress, "getAdress returnes bad values. ");
+        $this->assertEquals("15 rue de la porte Gellée, 44100 NANTES", $adresse, "getAdress returnes bad values. ");
     }
 
     public function testAdressIsInvalid()
