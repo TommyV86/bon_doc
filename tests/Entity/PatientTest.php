@@ -9,22 +9,22 @@ use Symfony\Bundle\FrameworkBundle\Test_KernelTestCase;
 class PatientTest extends TestCase
 {
     // test nom
-    public function testSetName()
+    public function testSetNom()
     {
         $patient = new Patient();
-        $patient->setName("VERSETTI");
-        $name = $patient->getName();
+        $patient->setNom("VERSETTI");
+        $name = $patient->getNom();
 
-        $this->assertEquals("VERSETTI", $name, "setName does not affect the right value. ");
+        $this->assertEquals("VERSETTI", $name, "setNom does not affect the right value. ");
     }
 
-    public function testGetName()
+    public function testgetNom()
     {
         $patient = new Patient();
-        $patient->setName("VERSETTI");
-        $name = $patient->getName();
+        $patient->setNom("VERSETTI");
+        $name = $patient->getNom();
 
-        $this->assertEquals("VERSETTI", $name, "getName returnes bad values. ");
+        $this->assertEquals("VERSETTI", $name, "getNom returnes bad values. ");
     }
 
     public function testNameIsInvalid()
@@ -32,7 +32,7 @@ class PatientTest extends TestCase
         $kernel = self::bootKernel();
         $validator = $kernel->getContainer()->get('validator');
         $patient = new Patient();
-        $patient->setName("VE");
+        $patient->setNom("VE");
         $errors = $validator->validate($patient);
 
         $this->assertCount(1, $errors, "Une erreur est rencontrée car moins de 3 chars");
@@ -54,30 +54,30 @@ class PatientTest extends TestCase
     }
 
     // test prenom
-    public function testSetFirstName()
+    public function testsetPrenom()
     {
         $patient = new Patient();
-        $patient->setFirstName("Tommy");
-        $firstName = $patient->getFirstName();
+        $patient->setPrenom("Tommy");
+        $prenom = $patient->getPrenom();
 
-        $this->assertEquals("Tommy", $firstName, "setFirstName does not affect the right value. ");
+        $this->assertEquals("Tommy", $prenom, "setPrenom does not affect the right value. ");
     }
 
-    public function testGetFirstName()
+    public function testGetPrenom()
     {
         $patient = new Patient();
-        $patient->setFirstName("Tommy");
-        $firstName = $patient->getFirstName();
+        $patient->setPrenom("Tommy");
+        $prenom = $patient->getPrenom();
 
-        $this->assertEquals("Tommy", $firstName, "getFirstName returnes bad values. ");
+        $this->assertEquals("Tommy", $prenom, "getFirstName returnes bad values. ");
     }
 
-    public function testFirstNameIsInvalid()
+    public function testPrenomIsInvalid()
     {
         $kernel = self::bootKernel();
         $validator = $kernel->getContainer()->get('validator');
         $patient = new Patient();
-        $patient->setFirstName("TO");
+        $patient->setPrenom("TO");
         $errors = $validator->validate($patient);
 
         $this->assertCount(1, $errors, "Une erreur est rencontrée car moins de 3 chars");
@@ -85,12 +85,12 @@ class PatientTest extends TestCase
         $this->assertEquals("Your first name must be at least 3 characters long", $errors[0]->getMessage());
     }
 
-    public function testFirstNameIsValid()
+    public function testPrenomIsValid()
     {
         $kernel = self::bootKernel();
         $validator = $kernel->getContainer()->get('validator');
         $patient = new Patient();
-        $patient->setFirstName("Tommy");
+        $patient->setPrenom("Tommy");
         $errors = $validator->validate($patient);
 
         $this->assertCount(0, $errors, "Une erreur est rencontrée car plus de 3 chars");
@@ -189,43 +189,43 @@ class PatientTest extends TestCase
     }
 
     // test adress
-    public function testSetAdress()
+    public function testSetAdresse()
     {
         $patient = new Patient();
-        $patient->setAdress("15 rue de la porte Gellée, 44100 NANTES");
-        $adress = $patient->getAdress();
+        $patient->setAdresse("15 rue de la porte Gellée, 44100 NANTES");
+        $adress = $patient->getAdresse();
 
         $this->assertEquals("15 rue de la porte Gellée, 44100 NANTES", $adress, "setAdress does not affect the right value. ");
     }
 
-    public function testGetAdress()
+    public function testGetAdresse()
     {
         $patient = new Patient();
-        $patient->setAdress("15 rue de la porte Gellée, 44100 NANTES");
-        $adress = $patient->getAdress();
+        $patient->setAdresse("15 rue de la porte Gellée, 44100 NANTES");
+        $adress = $patient->getAdresse();
 
         $this->assertEquals("15 rue de la porte Gellée, 44100 NANTES", $adress, "getAdress returnes bad values. ");
     }
 
-    public function testIsAdressInvalid()
+    public function testIsAdresseInvalid()
     {
         $kernel = self::bootKernel();
         $validator = $kernel->getContainer()->get('validator');
         $patient = new Patient();
-        $patient->setName("15 rue de la porte Gellée");
-        $patient = $validator->validate($patient);
+        $patient->setNom("15 rue de la porte Gellée");
+        $errors = $validator->validate($patient);
 
         $this->assertCount(1, $errors, "Une erreur est rencontrée car moins de 25 chars");
         $this->assertEquals(1, count($errors), "Une erreur est rencontrée car moins de 25 chars");
         $this->assertEquals("Your adress must be at least 25 characters long", $errors[0]->getMessage());
     }
 
-    public function testIsAdressValid()
+    public function testIsAdresseValid()
     {
         $kernel = self::bootKernel();
         $validator = $kernel->getContainer()->get('validator');
         $patient = new Patient();
-        $patient->setAdress("15 rue de la porte Gellée, 44100 NANTES");
+        $patient->setAdresse("15 rue de la porte Gellée, 44100 NANTES");
         $errors = $validator->validate($patient);
 
         $this->assertCount(0, $errors, "Une erreur est rencontrée car plus de 25 chars");
@@ -247,7 +247,7 @@ class PatientTest extends TestCase
     {
         $patient = new Patient();
         $patient->setHash("Tommymalade&é(-è_ççà)=1986.@");
-        $hash = $patient->getAdress();
+        $hash = $patient->getAdresse();
 
         $this->assertEquals("Tommymalade&é(-è_ççà)=1986.@", $hash, "getHash returnes bad values. ");
     }
@@ -258,7 +258,7 @@ class PatientTest extends TestCase
         $validator = $kernel->getContainer()->get('validator');
         $patient = new Patient();
         $patient->setHash("Tommymalade&é(-è_ççà)=1986.@");
-        $patient = $validator->validate($patient);
+        $errors = $validator->validate($patient);
 
         $this->assertCount(1, $errors, "Une erreur est rencontrée car moins de 25 chars");
         $this->assertEquals(1, count($errors), "Une erreur est rencontrée car moins de 25 chars");
