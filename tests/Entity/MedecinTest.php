@@ -226,7 +226,7 @@ class MedecinTest extends TestCase
         $validator = $kernel->getContainer()->get('validator');
         $medecin = new Medecin();
         $medecin->setTelephone("06-20-73-94-79");
-        $errors = $validator->validate($docteur);
+        $errors = $validator->validate($medecin);
 
         $this->assertCount(0, $errors, "Une erreur est rencontrée car plus de 3 chars");
         $this->assertEquals(0, count($errors), "Une erreur est rencontrée car plus de 3 chars");
