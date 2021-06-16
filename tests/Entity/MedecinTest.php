@@ -111,7 +111,7 @@ class MedecinTest extends TestCase
     public function testGetSpecialite()
     {
         $medecin = new Medecin();
-        $medecin->setSpecialty("Dentiste");
+        $medecin->setSpecialite("Dentiste");
         $specialite = $medecin->getSpecialite();
 
         $this->assertEquals("Dentiste", $specialite, "setSpecialty returnes bad values. ");
@@ -168,7 +168,7 @@ class MedecinTest extends TestCase
         $validator = $kernel->getContainer()->get('validator');
         $medecin = new Medecin();
         $medecin->setAdresse("15 rue de la porte Gellée");
-        $medecin = $validator->validate($medecin);
+        $errors = $validator->validate($medecin);
 
         $this->assertCount(1, $errors, "Une erreur est rencontrée car moins de 25 chars");
         $this->assertEquals(1, count($errors), "Une erreur est rencontrée car moins de 25 chars");
