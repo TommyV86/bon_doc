@@ -10,11 +10,12 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Medecin
 {
-
     /**
+     * @ORM\Id
+     * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private $id_medecin;
+    private $id;
 
     /**
      * @ORM\Column(type="string", length=20)
@@ -61,17 +62,9 @@ class Medecin
      */
     private $date_naissance;
 
-
-    public function getIdMedecin(): ?int
+    public function getId(): ?int
     {
-        return $this->id_medecin;
-    }
-
-    public function setIdMedecin(int $id_medecin): self
-    {
-        $this->id_medecin = $id_medecin;
-
-        return $this;
+        return $this->id;
     }
 
     public function getNom(): ?string
