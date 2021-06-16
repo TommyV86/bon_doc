@@ -10,12 +10,6 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Medecin
 {
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
-    private $id;
 
     /**
      * @ORM\Column(type="integer")
@@ -67,10 +61,6 @@ class Medecin
      */
     private $date_naissance;
 
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
 
     public function getIdMedecin(): ?int
     {
