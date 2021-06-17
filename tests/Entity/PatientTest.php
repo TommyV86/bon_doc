@@ -14,7 +14,7 @@ class PatientTest extends KernelTestCase
         $patient->setNom("VERSETTI");
         $name = $patient->getNom();
 
-        $this->assertEquals(0, $name, "setNom does not affect the right value. ");
+        $this->assertEquals("VERSETTI", $name, "setNom does not affect the right value. ");
     }
 
     public function testGetNom()
@@ -23,7 +23,7 @@ class PatientTest extends KernelTestCase
         $patient->setNom("VERSETTI");
         $name = $patient->getNom();
 
-        $this->assertEquals(0, $name, "getNom returnes bad values. ");
+        $this->assertEquals("VERSETTI", $name, "getNom returnes bad values. ");
     }
 
     public function testIsNomInvalid()
@@ -55,7 +55,7 @@ class PatientTest extends KernelTestCase
         $patient->setPrenom("Tommy");
         $prenom = $patient->getPrenom();
 
-        $this->assertEquals(0, $prenom, "setPrenom does not affect the right value. ");
+        $this->assertEquals("Tommy", $prenom, "setPrenom does not affect the right value. ");
     }
 
     public function testGetPrenom()
@@ -64,7 +64,7 @@ class PatientTest extends KernelTestCase
         $patient->setPrenom("Tommy");
         $prenom = $patient->getPrenom();
 
-        $this->assertEquals(0, $prenom, "getFirstName returnes bad values. ");
+        $this->assertEquals("Tommy", $prenom, "getFirstName returnes bad values. ");
     }
 
     public function testIsPrenomInvalid()
@@ -96,7 +96,7 @@ class PatientTest extends KernelTestCase
         $patient->setEmail("Tommy@aidezmoi.fr");
         $email = $patient->getEmail();
 
-        $this->assertEquals(0, $email, "email does not affect the right value. ");
+        $this->assertEquals("Tommy@aidezmoi.fr", $email, "email does not affect the right value. ");
     }
 
     public function testGetEmail()
@@ -105,7 +105,7 @@ class PatientTest extends KernelTestCase
         $patient->setEmail("Tommy@aidezmoi.fr");
         $email = $patient->getEmail();
 
-        $this->assertEquals(0, $email, "GetEmail returnes bad values. ");
+        $this->assertEquals("Tommy@aidezmoi.fr", $email, "GetEmail returnes bad values. ");
     }
 
     public function testIsEmailInvalid()
@@ -134,19 +134,19 @@ class PatientTest extends KernelTestCase
     public function testSetTelephone()
     {
         $patient = new Patient();
-        $patient->setTelephone("06-20-73-94-79");
+        $patient->setTelephone("0620739479");
         $telephone = $patient->getTelephone();
 
-        $this->assertEquals(0, $telephone, "setTelephone does not affect the right value. ");
+        $this->assertEquals("0620739479", $telephone, "setTelephone does not affect the right value. ");
     }
 
     public function testGetTelephone()
     {
         $patient = new Patient();
-        $patient->setTelephone("06-20-73-94-79");
+        $patient->setTelephone("0620739479");
         $telephone = $patient->getTelephone();
 
-        $this->assertEquals(0, $telephone, "getTelephone returnes bad values. ");
+        $this->assertEquals("0620739479", $telephone, "getTelephone returnes bad values. ");
     }
 
     public function testIsTelephoneInvalid()
@@ -154,7 +154,7 @@ class PatientTest extends KernelTestCase
         $kernel = self::bootKernel();
         $validator = $kernel->getContainer()->get('validator');
         $patient = new Patient();
-        $patient->setTelephone("06-20-73-94-7");
+        $patient->setTelephone("0620739479");
         $errors = $validator->validate($patient);
 
         $this->assertCount(0, $errors, "Une erreur est rencontrée car moins de 3 chars");
@@ -165,7 +165,7 @@ class PatientTest extends KernelTestCase
         $kernel = self::bootKernel();
         $validator = $kernel->getContainer()->get('validator');
         $patient = new Patient();
-        $patient->setTelephone("06-20-73-94-79");
+        $patient->setTelephone("0620739479");
         $errors = $validator->validate($patient);
 
         $this->assertCount(0, $errors, "Une erreur est rencontrée car plus de 3 chars");
@@ -178,7 +178,7 @@ class PatientTest extends KernelTestCase
         $patient->setAdresse("15 rue de la porte Gellée, 44100 NANTES");
         $adress = $patient->getAdresse();
 
-        $this->assertEquals(0, $adress, "setAdress does not affect the right value. ");
+        $this->assertEquals("15 rue de la porte Gellée, 44100 NANTES", $adress, "setAdress does not affect the right value. ");
     }
 
     public function testGetAdresse()
@@ -187,7 +187,7 @@ class PatientTest extends KernelTestCase
         $patient->setAdresse("15 rue de la porte Gellée, 44100 NANTES");
         $adress = $patient->getAdresse();
 
-        $this->assertEquals(0, $adress, "getAdress returnes bad values. ");
+        $this->assertEquals("15 rue de la porte Gellée, 44100 NANTES", $adress, "getAdress returnes bad values. ");
     }
 
     public function testIsAdresseInvalid()
@@ -226,9 +226,9 @@ class PatientTest extends KernelTestCase
     {
         $patient = new Patient();
         $patient->setHash("Tommymalade&é(-è_ççà)=1986.@");
-        $hash = $patient->getAdresse();
+        $hash = $patient->getHash();
 
-        $this->assertEquals(0, $hash, "getHash returnes bad values. ");
+        $this->assertEquals("Tommymalade&é(-è_ççà)=1986.@", $hash, "getHash returnes bad values. ");
     }
 
     public function testIsHashInvalid()
