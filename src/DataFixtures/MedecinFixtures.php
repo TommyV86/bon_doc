@@ -22,7 +22,7 @@ class MedecinFixtures extends Fixture
         $medecin->setTelephone('0320568179');
         $medecin->setEmail('tutu@tutu.fr');
         $medecin->setDateInscription(new \DateTime());
-        $medecin->setDateNaissance(new \Datetime(1990 - 03 - 27));
+        $medecin->setDateNaissance(new \Datetime('1990-03-27'));
         $manager->persist($medecin);
 
         $manager->flush();
