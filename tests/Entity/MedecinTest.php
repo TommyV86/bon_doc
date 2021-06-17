@@ -231,4 +231,45 @@ class MedecinTest extends KernelTestCase
         $this->assertEquals(0, count($errors), "Une erreur est rencontrée car plus de 3 chars");
         // $this->assertEquals("Your name must be at least 3 characters long", $errors[0]->getMessage());
     }
+
+    // test email
+    public function testSetEmail()
+    {
+        $medecin = new Medecin();
+        $medecin->setEmail("Tommy@aidezmoi.fr");
+        $email = $medecin->getEmail();
+
+        $this->assertEquals("Tommy@aidezmoi.fr", $email, "email does not affect the right value. ");
+    }
+
+    public function testGetEmail()
+    {
+        $medecin = new Medecin();
+        $medecin->setEmail("Tommy@aidezmoi.fr");
+        $email = $medecin->getEmail();
+
+        $this->assertEquals("Tommy@aidezmoi.fr", $email, "GetEmail returnes bad values. ");
+    }
+
+    public function testIsEmailInvalid()
+    {
+        $kernel = self::bootKernel();
+        $validator = $kernel->getContainer()->get('validator');
+        $medecin = new Medecin();
+        $medecin->setEmail("Tommy@aidezmoi.fr");
+        $errors = $validator->validate($medecin);
+
+        $this->assertCount(0, $errors, "Une erreur est rencontrée car moins de 3 chars");
+    }
+
+    public function testIsEmailValid()
+    {
+        $kernel = self::bootKernel();
+        $validator = $kernel->getContainer()->get('validator');
+        $medecin = new Medecin();
+        $medecin->setEmail("Tommy@aidezmoi.fr");
+        $errors = $validator->validate($medecin);
+
+        $this->assertCount(0, $errors, "Une erreur est rencontrée car plus de 3 chars");
+    }
 }
