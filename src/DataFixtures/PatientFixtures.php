@@ -21,6 +21,8 @@ class PatientFixtures extends Fixture
         $patient->setHash('azerty123.');
         $patient->setDateInscription(new \DateTime());
         $patient->setDateNaissance(new \Datetime('1990-03-27'));
+        $patient->setSexe('Male');
+
         $manager->persist($patient);
         $manager->flush();
     }
