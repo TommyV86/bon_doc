@@ -15,6 +15,7 @@ class PatientFixtures extends Fixture
         $patient = new Patient(); 
         $patient->setNom('tutu');
         $patient->setPrenom('toto');
+        $patient->setAdresse("15 rue de la porte Gellée, 44100 NANTES");
         $patient->setTelephone('0102030405');
         $patient->setEmail('tutu@tutu.fr');
         $patient->setHash('azerty123.');
