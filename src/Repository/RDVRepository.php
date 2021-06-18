@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\RDV;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Liip\TestFixturesBundle\Test\FixturesTrait;
 
 /**
  * @method RDV|null find($id, $lockMode = null, $lockVersion = null)
