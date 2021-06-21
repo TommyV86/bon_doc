@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Medecin;
 use FOS\RestBundle\Controller\AbstractFOSRestController;
 use FOS\RestBundle\Controller\Annotations\Get;
+use FOS\RestBundle\Controller\Annotations\Post;
 use FOS\RestBundle\View\View;
 
 
@@ -39,7 +40,7 @@ class MedecinController extends AbstractFOSRestController
      * @return void
      */
     public function addMedecin(Medecin $medecin)
-    {        
+    {
         $add = $this->getDoctrine()->getManager();
         $add->persist($medecin);
         $add->flush();

@@ -38,7 +38,7 @@ class Patient
     private $email;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string")
      */
     private $telephone;
 
@@ -66,6 +66,11 @@ class Patient
     //  * @ORM\OneToOne(targetEntity=RDV::class, mappedBy="patient", cascade={"persist", "remove"})
     //  */
     // private $rdvs;
+
+    /**
+     * @ORM\Column(type="string", length=15)
+     */
+    private $medecin;
 
     public function getId(): ?int
     {
@@ -196,4 +201,24 @@ class Patient
 
     //     return $this;
     // }
+
+    /**
+     * Get the value of medecin
+     */
+    public function getMedecin()
+    {
+        return $this->medecin;
+    }
+
+    /**
+     * Set the value of medecin
+     *
+     * @return  self
+     */
+    public function setMedecin($medecin)
+    {
+        $this->medecin = $medecin;
+
+        return $this;
+    }
 }
