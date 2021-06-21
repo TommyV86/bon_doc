@@ -47,10 +47,10 @@ class PatientController extends AbstractFOSRestController
     {
         $manager = $this->getDoctrine()->getManager();
         $repo = $this->getDoctrine()->getRepository(Medecin::class);
-        if ($repo->find($patient->getMedecin()->getId()) == null) {
+        if ($repo->find($patient->getRdvs()->getId()) == null) {
         } else {
-            $medecin = $repo->find($patient->getMedecin()->getId());
-            $patient->setMedecin($medecin);
+            $rdv = $repo->find($patient->getRdvs()->getId());
+            $patient->setRdvs($rdv);
         }
         $manager->persist($patient);
         $manager->flush();

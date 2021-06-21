@@ -62,15 +62,12 @@ class Patient
      */
     private $sexe;
 
-    // /**
-    //  * @ORM\OneToOne(targetEntity=RDV::class, mappedBy="patient", cascade={"persist", "remove"})
-    //  */
-    // private $rdvs;
-
     /**
-     * @ORM\Column(type="string", length=15)
+     * @ORM\OneToOne(targetEntity=RDV::class, mappedBy="patient", cascade={"persist", "remove"})
      */
-    private $medecin;
+    private $rdvs;
+
+
 
     public function getId(): ?int
     {
@@ -185,39 +182,19 @@ class Patient
         return $this;
     }
 
-    // public function getRdvs(): ?RDV
-    // {
-    //     return $this->rdvs;
-    // }
-
-    // public function setRdvs(RDV $rdvs): self
-    // {
-    //     // set the owning side of the relation if necessary
-    //     if ($rdvs->getPatient() !== $this) {
-    //         $rdvs->setPatient($this);
-    //     }
-
-    //     $this->rdvs = $rdvs;
-
-    //     return $this;
-    // }
-
-    /**
-     * Get the value of medecin
-     */
-    public function getMedecin()
+    public function getRdvs(): ?RDV
     {
-        return $this->medecin;
+        return $this->rdvs;
     }
 
-    /**
-     * Set the value of medecin
-     *
-     * @return  self
-     */
-    public function setMedecin($medecin)
+    public function setRdvs(RDV $rdvs): self
     {
-        $this->medecin = $medecin;
+        // set the owning side of the relation if necessary
+        if ($rdvs->getPatient() !== $this) {
+            $rdvs->setPatient($this);
+        }
+
+        $this->rdvs = $rdvs;
 
         return $this;
     }
