@@ -1,0 +1,26 @@
+openapi: 3.0.0
+paths:
+  /pet:
+    post:
+      tags:
+        - rdv
+      operationId: addRdv
+      requestBody:
+        $ref: "#/components/requestBodies/Rdv"
+      responses:
+        "405":
+          description: "Invalid input"
+      security:
+        - petstore_auth:
+            - "write:rdvs"
+            - "read:rdvs"
+components:
+  schemas: {}
+  requestBodies:
+    RdvDTO:
+      description: "RdvDTO object that needs to be added to the store"
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/RdvDTO"
