@@ -35,13 +35,25 @@ class RdvController extends AbstractFOSRestController
         return View::create($rdv, 200);
     }
 
-    // /**
-    //  * 
-    //  * @Post("newRdv")
-    //  * @return void
-    //  */
-    // public function createRdv()
-    // {
+    /**
+     *  * @OA\Post(
+     *     path="/rdv",
+     *     tags={"rdv"},
+     *     operationId="addRdv",
+     *     @OA\Response(
+     *         response=405,
+     *         description="Invalid input"
+     *     ),
+     *     security={
+     *         {"petstore_auth": {"write:rdvs", "read:rdvs"}}
+     *     },
+     *     requestBody={"$ref": "#/components/requestBodies/Rdv"}
+     * )
+     * @Post("newRdv")
+     * @return void
+     */
+    public function createRdv()
+    {
         
-    // }
+    }
 }
