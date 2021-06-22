@@ -47,7 +47,7 @@ class MedecinController extends AbstractFOSRestController
      */
     public function addMedecin(Medecin $medecin)
     {
-        
+
         $manager = $this->getDoctrine()->getManager();
         $rdv = new RDV();
         $rdv->setDateRdv(new DateTime("10/05/2021"));
@@ -61,8 +61,6 @@ class MedecinController extends AbstractFOSRestController
         $medecin->setEmail("lala@lala.fr");
         $medecin->setDateInscription(new DateTime());
         $medecin->setDateNaissance(new DateTime("1900/05/01"));
-        $medecin->setRdvs($rdv);
-        
         $manager->persist($medecin);
         $manager->flush();
 

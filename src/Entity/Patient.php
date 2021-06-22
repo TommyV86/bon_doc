@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\PatientRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -10,6 +11,8 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Patient
 {
+
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -67,6 +70,10 @@ class Patient
      */
     private $rdvs;
 
+    public function __construct()
+    {
+        $this->rdvs = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -181,7 +188,7 @@ class Patient
         return $this;
     }
 
-    public function getRdvs(): ?RDV
+    public function getRdvs(): ArrayCollection
     {
         return $this->rdvs;
     }
@@ -198,9 +205,11 @@ class Patient
         return $this;
     }
 
+
+
     public function addRdv(RDV $rdvsId): self //
     {
-        if (!$this->rdvs->contains($rdvsId)) {  
+        if (!$this->rdvs->contains($rdvsId)) {
             $this->rdvs[] = $rdvsId;
             $rdvsId->setPatient($this);
         }

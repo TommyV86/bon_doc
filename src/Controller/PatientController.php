@@ -46,12 +46,6 @@ class PatientController extends AbstractFOSRestController
     public function create(Patient $patient)
     {
         $manager = $this->getDoctrine()->getManager();
-        $repo = $this->getDoctrine()->getRepository(Medecin::class);
-        if ($repo->find($patient->getRdvs()->getId()) == null) {
-        } else {
-            $rdv = $repo->find($patient->getRdvs()->getId());
-            $patient->setRdvs($rdv);
-        }
         $manager->persist($patient);
         $manager->flush();
         return View::create(null, 200);
