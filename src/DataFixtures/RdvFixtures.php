@@ -12,8 +12,9 @@ class RdvFixtures extends Fixture
 {
     public function load(ObjectManager $manager)
     {
-        for ($i = 0; $i < 5; $i++) {
-           
+        
+        for($i = 0; $i < 9; $i++)
+        {
 
             $medecin = new Medecin();
             $medecin->setNom('VERSETTI');
@@ -41,8 +42,8 @@ class RdvFixtures extends Fixture
             $manager->persist($patient);
 
             $rdv = new Rdv();
-            $rdv->setDateRdv(new \DateTime('2021-10-12'));
-            $rdv->setHeureRdv(new \DateTime('15:50'));
+            $rdv->setDateRdv(new \DateTime('2021-0'.($i).'-0'.($i).''));
+            $rdv->setHeureRdv(new \DateTime('2021-0'.($i).'-0'.($i).' 14:5'.($i).''));
 
             $rdv->setMedecin($medecin);
             $rdv->setPatient($patient);
