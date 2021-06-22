@@ -9,6 +9,7 @@ use FOS\RestBundle\Controller\Annotations\Get;
 use FOS\RestBundle\Controller\Annotations\Post;
 use FOS\RestBundle\View\View;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use OpenApi\Annotations as OA;
 
 
 
@@ -16,7 +17,23 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 class MedecinController extends AbstractFOSRestController
 {
     /**
-     * 
+     * @OA\Post(
+     *     path="/medecins",
+     *     tags={"medecin"},
+     *     operationId="getAll",
+     *     @OA\Response(
+     *         response=404,
+     *         description="if medecin doesn't exist in database"
+     *     ),
+     *      @OA\Response(
+     *         response=201,
+     *         description="success request"
+     *     ),
+     *     security={
+     *         {"medecins_auth": {"write:medecins", "read:medecins"}}
+     *     },
+     *     requestBody={"$ref": "#/components/requestBodies/Medecin"}
+     * )
      * @Get("medecins")
      * @return void
      */

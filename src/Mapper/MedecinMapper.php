@@ -7,7 +7,7 @@ use App\Entity\Medecin;
 
 class MedecinMapper
 {
-    public function convertPatientEntityToPatientDTO(Medecin $medecin) : MedecinDTO
+    public function convertMedecinEntityToMedecinDTO(Medecin $medecin) : MedecinDTO
     {
         $mDTO = (new MedecinDTO())->setId($medecin->getId())
                                   ->setNom($medecin->getNom());

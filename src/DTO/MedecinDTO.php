@@ -3,6 +3,7 @@
 namespace App\DTO;
 
 use App\Entity\Patient;
+use OpenApi\Annotations as OA;
 
 class MedecinDTO
 {
