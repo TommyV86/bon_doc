@@ -34,7 +34,7 @@ class RDV
     private $medecin;
 
     /**
-     * @ORM\OneToOne(targetEntity=Patient::class, inversedBy="rdv", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity=Patient::class, inversedBy="rdvs", cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $patient;

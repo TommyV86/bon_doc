@@ -62,10 +62,10 @@ class Patient
      */
     private $sexe;
 
-    // /**
-    //  * @ORM\OneToOne(targetEntity=RDV::class, mappedBy="patient", cascade={"persist", "remove"})
-    //  */
-    // private $rdvs;
+    /**
+     * @ORM\OneToMany(targetEntity=RDV::class, mappedBy="patient")
+     */
+    private $rdvs;
 
     /**
      * @ORM\Column(type="string", length=15)
@@ -202,22 +202,24 @@ class Patient
         return $this;
     }
 
-    /**
-     * Get the value of medecin
-     */ 
-    public function getMedecin()
+    public function addRdv(RDV $rdvsId): self //
     {
-        return $this->medecin;
+        if (!$this->rdvs->contains($rdvsId)) {  
+            $this->rdvs[] = $rdvsId;
+            $rdvsId->setPatient($this);
+        }
+
+        return $this;
     }
 
-    /**
-     * Set the value of medecin
-     *
-     * @return  self
-     */ 
-    public function setMedecin($medecin)
+    public function removeRdv(RDV $rdvsId): self
     {
-        $this->medecin = $medecin;
+        if ($this->rdvs->removeElement($rdvsId)) {    //suppression du rdv
+            // set the owning side to null (unless already changed)
+            if ($rdvsId->getPatient() === $this) {   //desassocie le rdv du patient
+                $rdvsId->setPatient(null);
+            }
+        }
 
         return $this;
     }

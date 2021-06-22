@@ -63,7 +63,7 @@ class Medecin
     private $date_naissance;
 
     /**
-     * @ORM\OneToOne(targetEntity=RDV::class, mappedBy="medecin", cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity=RDV::class, mappedBy="medecin")
      */
     private $rdvs;
 
@@ -192,14 +192,24 @@ class Medecin
         return $this->rdvs;
     }
 
-    public function setRdvs(RDV $rdvs): self
+    public function addRdvsId(RDV $rdvsId): self
     {
-        // set the owning side of the relation if necessary
-        if ($rdvs->getMedecin() !== $this) {
-            $rdvs->setMedecin($this);
+        if (!$this->rdvsId->contains($rdvsId)) {
+            $this->rdvsId[] = $rdvsId;
+            $rdvsId->setPatient($this);
         }
 
-        $this->rdvs = $rdvs;
+        return $this;
+    }
+
+    public function removeRdvsId(RDV $rdvsId): self
+    {
+        if ($this->rdvsId->removeElement($rdvsId)) {
+            // set the owning side to null (unless already changed)
+            if ($rdvsId->getPatient() === $this) {
+                $rdvsId->setPatient(null);
+            }
+        }
 
         return $this;
     }

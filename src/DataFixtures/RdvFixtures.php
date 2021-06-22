@@ -8,7 +8,7 @@ use App\Entity\RDV;
 use App\Entity\Medecin;
 use App\Entity\Patient;
 
-class AppFixtures extends Fixture
+class RdvFixtures extends Fixture
 {
     public function load(ObjectManager $manager)
     {
