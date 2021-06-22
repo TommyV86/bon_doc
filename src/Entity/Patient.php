@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\PatientRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\Collection;
 
 /**
  * @ORM\Entity(repositoryClass=PatientRepository::class)
@@ -188,7 +189,7 @@ class Patient
         return $this;
     }
 
-    public function getRdvs(): ArrayCollection
+    public function getRdvs(): Collection
     {
         return $this->rdvs;
     }
