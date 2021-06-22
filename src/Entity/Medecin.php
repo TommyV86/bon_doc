@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use App\Repository\MedecinRepository;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -66,6 +68,11 @@ class Medecin
      * @ORM\OneToMany(targetEntity=RDV::class, mappedBy="medecin")
      */
     private $rdvs;
+
+    public function __construct()
+    {
+        $this->rdvs = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -187,7 +194,7 @@ class Medecin
         return $this;
     }
 
-    public function getRdvs(): ?RDV
+    public function getRdvs(): Collection
     {
         return $this->rdvs;
     }

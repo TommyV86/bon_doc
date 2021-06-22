@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Entity\Medecin;
-use App\Entity\RDV;
 use DateTime;
 use FOS\RestBundle\Controller\AbstractFOSRestController;
 use FOS\RestBundle\Controller\Annotations\Get;
@@ -49,18 +48,6 @@ class MedecinController extends AbstractFOSRestController
     {
 
         $manager = $this->getDoctrine()->getManager();
-        $rdv = new RDV();
-        $rdv->setDateRdv(new DateTime("10/05/2021"));
-
-        $medecin->setNom("Dupond");
-        $medecin->setPrenom("toto");
-        $medecin->setSpecialite("dentiste");
-        $medecin->setSexe("féminin");
-        $medecin->setAdresse("21 rue de Gaulle 59000 Lille");
-        $medecin->setTelephone("0621222324");
-        $medecin->setEmail("lala@lala.fr");
-        $medecin->setDateInscription(new DateTime());
-        $medecin->setDateNaissance(new DateTime("1900/05/01"));
         $manager->persist($medecin);
         $manager->flush();
 

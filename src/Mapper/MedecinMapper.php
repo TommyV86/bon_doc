@@ -19,7 +19,5 @@ class MedecinMapper
     {
         $medecin = new Medecin();
         $medecin->setNom(($medecinDTO->getNom()));
-        
-
     }
 }
