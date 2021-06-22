@@ -9,10 +9,12 @@ use FOS\RestBundle\View\View;
 use App\Entity\Patient;
 use App\Entity\Medecin;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use OpenApi\Annotations as OA;
 
 class PatientController extends AbstractFOSRestController
 {
     /**
+     * 
      * 
      * @Get("/patients")
      * @
@@ -39,8 +41,20 @@ class PatientController extends AbstractFOSRestController
 
     /**
      * 
+     * @OA\Post(
+     *     path="/patients",
+     *     tags={"patient"},
+     *     operationId="create patient",
+     *     @OA\Response(
+     *         response=405,
+     *         description="Invalid input"
+     *     ),
+     * requestBody={"$ref": "#/components/schemas/PatientDTO",}
+     * )
+     * 
+     * 
      * @Post("/patients")
-     * @ParamConverter("patient", converter="fos_rest.request_body")
+     * @ParamConverter("PatientDTO", converter="fos_rest.request_body")
      * @return void
      */
     public function create(Patient $patient)
