@@ -23,7 +23,7 @@ class RDV
     private $date_rdv;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="time")
      */
     private $heure_rdv;
 
