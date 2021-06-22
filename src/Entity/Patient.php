@@ -67,10 +67,6 @@ class Patient
      */
     private $rdvs;
 
-    /**
-     * @ORM\Column(type="string", length=15)
-     */
-    private $medecin;
 
     public function getId(): ?int
     {
