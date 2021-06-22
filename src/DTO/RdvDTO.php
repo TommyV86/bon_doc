@@ -5,9 +5,26 @@ namespace App\DTO;
 class RdvDTO
 {
     private $idRdv;
+     /**
+     * @OA\Property(
+     *     format="int64",
+     *     description="ID",
+     *     title="ID",
+     * )
+     */
     private $dateRdv;
     private $heureRdv;
 
+        /** 
+        * @OA\Schema(
+        *     description="RdvDTO model",
+        *     title="Rdv model",
+        *     required={"name", "photoUrls"},
+        *     @OA\Xml(
+        *         name="Rdv"
+        *     )
+        * )
+        */
     
 
     /**
