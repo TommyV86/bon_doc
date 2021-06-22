@@ -6,6 +6,7 @@ use App\Entity\RDV;
 use App\Entity\Patient;
 use FOS\RestBundle\Controller\AbstractFOSRestController;
 use FOS\RestBundle\Controller\Annotations\Get;
+use FOS\RestBundle\Controller\Annotations\Post;
 use FOS\RestBundle\View\View;
 
 
@@ -25,7 +26,7 @@ class RdvController extends AbstractFOSRestController
 
     /**
      * 
-     * @Get("rdvid")
+     * @Get("rdv{id}")
      * @return void
      */
     public function getById()
@@ -34,5 +35,13 @@ class RdvController extends AbstractFOSRestController
         return View::create($rdv, 200);
     }
 
-
+    // /**
+    //  * 
+    //  * @Post("newRdv")
+    //  * @return void
+    //  */
+    // public function createRdv()
+    // {
+        
+    // }
 }
