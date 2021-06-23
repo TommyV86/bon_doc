@@ -8,7 +8,7 @@ use FOS\RestBundle\Controller\AbstractFOSRestController;
 use FOS\RestBundle\Controller\Annotations\Get;
 use FOS\RestBundle\Controller\Annotations\Post;
 use FOS\RestBundle\View\View;
-
+use OpenApi\Annotations as OA;
 
 
 class RdvController extends AbstractFOSRestController
@@ -52,8 +52,8 @@ class RdvController extends AbstractFOSRestController
      * @Post("newRdv")
      * @return void
      */
-    public function createRdv()
-    {
+    // public function createRdv()
+    // {
         
-    }
+    // }
 }

@@ -6,19 +6,16 @@ use App\DTO\MedcinDTO;
 use App\Entity\Medecin;
 use App\Mapper\MedecinMapper;
 use App\Repository\MedecinRepository;
-use App\Repository\PatientRepository;
 use Doctrine\ORM\EntityManagerInterface;
 
 class MedecinService
 {
     private $medecinRepository;
-    private $patientRepository;
     private $entityManager;
 
-    public function __construct(MedecinRepository $medRepo, PatientRepository $patRepo, EntityManagerInterface $manager)
+    public function __construct(MedecinRepository $medRepo, EntityManagerInterface $manager)
     {
         $this->medecinRepository = $medRepo;
-        $this->patientRepository = $patRepo;
         $this->entityManager = $manager;
     }
 
@@ -36,7 +33,7 @@ class MedecinService
 
     public function getById()
     {
-        $medecin = $this->medecinRepository->find(3);
+        $medecin = $this->medecinRepository->find(6);
         $medecinFinded = [];
         $medecinMapper = new MedecinMapper();
         $medecinDTO = $medecinMapper->convertMedecinEntityToMedecinDTO($medecin);

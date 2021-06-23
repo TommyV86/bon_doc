@@ -10,9 +10,7 @@ use FOS\RestBundle\Controller\Annotations\Post;
 use FOS\RestBundle\View\View;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use OpenApi\Annotations as OA;
-
-
-
+use App\Service\MedecinService;
 
 class MedecinController extends AbstractFOSRestController
 {
@@ -37,37 +35,32 @@ class MedecinController extends AbstractFOSRestController
      * @Get("medecins")
      * @return void
      */
-    public function getAll()
+    public function getAll(MedecinService $medServ)
     {
-        $medecin = $this->getDoctrine()->getRepository(Medecin::class)->findAll();
-        return View::create($medecin, 200);
+        $medecins = $medServ->getAll();
+        return View::create($medecins, 200);
     }
 
     /**
      * 
-     * @Get("medecin{id}")
+     * @Get("/medecin{id}")
      * @return void
      */
-    public function getById()
+    public function getById(MedecinService $medServ)
     {
-        $id = 1;
-        $medecin = $this->getDoctrine()->getRepository(Medecin::class)->find($id);
+        $medecin = $medServ->getById();
         return View::create($medecin, 200);
     }
 
     /**
      * 
-     * @Post("/medecins")
+     * @Post("medecins")
      * @ParamConverter("medecin", converter="fos_rest.request_body")
      * @return void
      */
-    public function addMedecin(Medecin $medecin)
+    public function addMedecin(Medecin $medecin, MedecinService $medServ)
     {
-
-        $manager = $this->getDoctrine()->getManager();
-        $manager->persist($medecin);
-        $manager->flush();
-
+        $medServ->addMedecin($medecin);
         return View::create(null, 200);
     }
 }
