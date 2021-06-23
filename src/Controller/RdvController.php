@@ -52,8 +52,14 @@ class RdvController extends AbstractFOSRestController
      * @Post("newRdv")
      * @return void
      */
+<<<<<<< HEAD
     // public function createRdv()
     // {
         
     // }
+=======
+    public function createRdv()
+    {
+    }
+>>>>>>> baeead9 (ajout use docu api)
 }
