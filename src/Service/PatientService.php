@@ -6,6 +6,7 @@ use App\DTO\PatientDTO;
 use App\Mapper\PatientMapper;
 use App\Repository\PatientRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use App\Entity\Patient;
 
 class PatientService
 {
@@ -40,5 +41,22 @@ class PatientService
         $this->entityManager->persist($patientToSave);
         $this->entityManager->flush();
         return true;
+    }
+
+    public function addPatient(Patient $patient)
+    {
+        $this->entityManager->persist($patient);
+        $this->entityManager->flush();
+    }
+
+    public function getById($id)
+    {
+        $patient = $this->patientRepository->find($id);
+        $patientFinded = [];
+        $patientMapper = new PatientMapper();
+        $patientDTO = $patientMapper->convertPatientEntityToPatientDTO($patient);
+        $patientFinded[] = $patientDTO;
+
+        return $patientFinded;
     }
 }

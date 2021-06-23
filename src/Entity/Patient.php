@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\PatientRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity(repositoryClass=PatientRepository::class)
@@ -71,7 +72,7 @@ class Patient
 
     public function __construct()
     {
-        $this->rdvs = new Collection();
+        $this->rdvs = new ArrayCollection();
     }
 
     public function getId(): ?int

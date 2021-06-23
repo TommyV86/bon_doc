@@ -2,17 +2,27 @@
 
 namespace App\Controller;
 
-use FOS\RestBundle\Controller\AbstractFOSRestController;
+use App\DTO\PatientDTO;
+use App\Entity\Medecin;
+use App\Entity\Patient;
+use App\Mapper\PatientMapper;
+use App\Service\PatientService;
+use FOS\RestBundle\View\View;
 use FOS\RestBundle\Controller\Annotations\Get;
 use FOS\RestBundle\Controller\Annotations\Post;
-use FOS\RestBundle\View\View;
-use App\Entity\Patient;
-use App\Entity\Medecin;
+use FOS\RestBundle\Controller\AbstractFOSRestController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use OpenApi\Annotations as OA;
 
 class PatientController extends AbstractFOSRestController
 {
+    private $patientService;
+
+    public function __construct(PatientService $patientService)
+    {
+        $this->patientService = $patientService;
+    }
+
     /**
      * 
      * 
@@ -23,19 +33,21 @@ class PatientController extends AbstractFOSRestController
     public function getAll()
     {
 
-        $patient = $this->getDoctrine()->getRepository(Patient::class)->findAll();
-        return View::create($patient, 200);
+        $patientsDto = $this->patientService->findAll();
+        return View::create($patientsDto, 200, ["content-type" => "application/json"]);
     }
 
     /**
      * 
      * @Get("/patients/{id}")
+     * 
+     * @param int $id
      * @return void
      */
-    public function getById()
+    public function getById(PatientService $patientServ)
     {
-        $id = 1;
-        $patient = $this->getDoctrine()->getRepository(Patient::class)->find($id);
+        $id = 31;
+        $patient = $patientServ->getById($id);
         return View::create($patient, 200);
     }
 
@@ -54,14 +66,25 @@ class PatientController extends AbstractFOSRestController
      * 
      * 
      * @Post("/patients")
-     * @ParamConverter("PatientDTO", converter="fos_rest.request_body")
+     * @ParamConverter("patientDTO", converter="fos_rest.request_body")
      * @return void
      */
-    public function create(Patient $patient)
+    public function create(PatientDTO $patientDTO)
     {
-        $manager = $this->getDoctrine()->getManager();
-        $manager->persist($patient);
-        $manager->flush();
-        return View::create(null, 200);
+        if (!$this->patientService->save($patientDTO)) {
+            return View::create(null, 404);
+        }
+        return View::create(null, 201);
+    }
+
+    /**
+     * @Post("patients")
+     * @ParamConverter("patient", converter="fos_rest.request_body")
+     * @return void
+     */
+    public function addPatient(Patient $patient, PatientService $patientService)
+    {
+        $patientService->addPatient($patient);
+        return View::create(null, 201);
     }
 }

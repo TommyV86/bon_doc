@@ -3,7 +3,6 @@
 namespace App\DTO;
 
 use OpenApi\Annotations as OA;
-use App\Entity\Medecin;
 
 /**
  *     @OA\Schema(
@@ -30,17 +29,15 @@ class PatientDTO
      *     title="nom",
      * )
      *
-     * @var integer
+     * @var string
      */
 
     private $nom;
-    private $medecinId;
-    private $medecinDTO;
 
     /**
      * Get the value of id
      */
-    public function getId()
+    public function getId(): ?int
     {
         return $this->id;
     }
@@ -50,7 +47,7 @@ class PatientDTO
      *
      * @return  self
      */
-    public function setId($id)
+    public function setId(string $id): self
     {
         $this->id = $id;
 
@@ -60,7 +57,7 @@ class PatientDTO
     /**
      * Get the value of nom
      */
-    public function getNom()
+    public function getNom(): ?string
     {
         return $this->nom;
     }
@@ -70,49 +67,9 @@ class PatientDTO
      *
      * @return  self
      */
-    public function setNom($nom)
+    public function setNom(string $nom): self
     {
         $this->nom = $nom;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of medecinId
-     */
-    public function getMedecinId()
-    {
-        return $this->medecinId;
-    }
-
-    /**
-     * Set the value of medecinId
-     *
-     * @return  self
-     */
-    public function setMedecinId($medecinId)
-    {
-        $this->medecinId = $medecinId;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of medecinDTO
-     */
-    public function getMedecinDTO()
-    {
-        return $this->medecinDTO;
-    }
-
-    /**
-     * Set the value of medecinDTO
-     *
-     * @return  self
-     */
-    public function setMedecinDTO($medecinDTO)
-    {
-        $this->medecinDTO = $medecinDTO;
 
         return $this;
     }
