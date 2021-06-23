@@ -23,7 +23,7 @@ class PatientService
     }
 
 
-    public function findAll()
+    public function getAll()
     {
         $patients = $this->patientRepository->findAll();
         $patientDTOs = [];

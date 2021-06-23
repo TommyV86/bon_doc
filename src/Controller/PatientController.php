@@ -30,11 +30,11 @@ class PatientController extends AbstractFOSRestController
      * @
      * @return void
      */
-    public function getAll()
+    public function getAll(PatientService $patientServ)
     {
 
-        $patientsDto = $this->patientService->findAll();
-        return View::create($patientsDto, 200, ["content-type" => "application/json"]);
+        $patients = $patientServ->getAll();
+        return View::create($patients, 200);
     }
 
     /**
